@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import javax.swing.text.html.StyleSheet;
 
+
 public class fenetre extends Application {
 
     public static void main(String[] args) {
@@ -29,7 +30,7 @@ public class fenetre extends Application {
 
     // Gestionnaire d'évènements appelé lors du clic sur le bouton
     EventHandler<MouseEvent> buttonClickHandler = actionEvent -> {
-        helloLabel.setText( "Bonjour à toi, "+nameField.getText() );
+        helloLabel.setText( "choisi "+nameField.getText() +"fois");
     };
 
     @Override
@@ -78,27 +79,56 @@ public class fenetre extends Application {
         HBox.setHgrow(boutonsCentre, Priority.ALWAYS);
 
         // Changement du texte après un clic sur le bouton
-        Label labeltextuelinvi = new Label(" ");
-        borderPane.setCenter(labeltextuelinvi);
+        Pane canvas = new Pane();
+        canvas.setPrefSize(400,200);
+        borderPane.setCenter(canvas);
 
-        boutonsCentre.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> {
-            Vert.setStyle("-fx-background-color:green;");
-            Rouge.setStyle("-fx-background-color:red;");
-            Blue.setStyle("-fx-background-color:blue;");
+        Vert.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> {
+            canvas.setStyle("-fx-background-color:green;");
+        });
+        Rouge.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> {
+            canvas.setStyle("-fx-background-color:red;");
+        });
+        Blue.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> {
+            canvas.setStyle("-fx-background-color:blue;");
         });
 
         //compteur
 
         //change titre
-        //boutonsCentre.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> {
-          //  Vert.setText( "Vert choisi "+ +"fois");
-           // Rouge.setText( "Rouge choisi "+ +"fois");
-           // Blue.setText( "Blue choisi "+ +"fois");
-        //});
-
         // Changement du texte après un clic sur le bouton
-        boutonsCentre.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> handleButonClick(actionEvent) );
+        int cptblue =0;
+        int cptrouge =0;
+        int cptvert =0;
 
+        if ("Blue".equals(true)) {
+            ++cptblue;
+            int finalCptblue = cptblue;
+            Blue.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> {
+                helloLabel.setText("Blue choisi " + finalCptblue + "fois");
+            });
+
+            // Changement du texte après un clic sur le bouton
+            boutonsCentre.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> handleButonClick(actionEvent));
+        } else if ("Rouge".equals(true)) {
+            ++cptrouge;
+            int finalCptrouge = cptrouge;
+            Blue.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> {
+                helloLabel.setText("Blue choisi " + finalCptrouge + "fois");
+            });
+
+            // Changement du texte après un clic sur le bouton
+            boutonsCentre.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> handleButonClick(actionEvent));
+        } else if ("Vert".equals(true)) {
+            ++cptvert;
+            int finalCptvert = cptvert;
+            Blue.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> {
+                helloLabel.setText("Blue choisi " + finalCptvert + "fois");
+            });
+
+            // Changement du texte après un clic sur le bouton
+            boutonsCentre.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> handleButonClick(actionEvent));
+        }
         HBox.setHgrow(labeltextuel, Priority.ALWAYS);
 
         // Création de la scene
@@ -115,6 +145,6 @@ public class fenetre extends Application {
     }
 
     private void handleButonClick(MouseEvent actionEvent) {
-        helloLabel.setStyle("-fx-background-color:orangered;");
+        helloLabel.setText( "Bonjour à toi, "+nameField.getText() );
     }
 }
