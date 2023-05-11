@@ -5,6 +5,6 @@ module com.example.demo {
     exports com.example.partie1;
 
 
-    opens com2.example.partie2 to javafx.fxml;
-    exports com2.example.partie2;
+    opens com2.ex4 to javafx.fxml;
+    exports com2.ex4;
 }
