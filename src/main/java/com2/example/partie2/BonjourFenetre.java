@@ -78,6 +78,7 @@ public class BonjourFenetre extends Application {
         // Changement du texte après un clic sur le bouton
         button.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> handleButonClick(actionEvent) );
 
+
         // Ajout de la scene à la fenêtre
         primaryStage.setScene( scene );
 
