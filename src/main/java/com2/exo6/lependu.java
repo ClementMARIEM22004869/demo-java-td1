@@ -7,7 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -21,8 +23,6 @@ public class lependu extends Application {
     private Label label;
 
     private int life = 7;
-
-    private Button Rejouer;
 
     private Image image;
 
@@ -41,15 +41,30 @@ public class lependu extends Application {
         // Création d'un composant avec l'image peinte à l'intérieur
         ImageView iv = new ImageView();
         iv.setImage(image);
+
         // Intégration de l'image
         root.getChildren().add( iv );
         VBox vbox = new VBox(iv);
 
         label = new Label();
         label.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        label.setText("Nombre de vies :" + life);
+        label.setText("Nombre de vies : " + life);
         root.setVgrow(label, Priority.ALWAYS);
-        //root.setAlignment(label, Pos.CENTER);
+        root.getChildren().add(label);
+
+        FlowPane clacla = new FlowPane();
+        for (char car = 'A'; car<='Z'; ++car){
+            Button bt = new Button (Character.toString(car));
+            //bt.addEventHandler(MouseEvent.MOUSE_CLICKED, new PendueEventHandler (root, iv , life, ));
+            clacla.getChildren().add(bt);
+        }
+        root.getChildren().add(clacla);
+
+        Button Rejouer = new Button("Rejouer");
+        root.getChildren().add(Rejouer);
+        Rejouer.setOnAction(event -> {
+
+        });
 
         Scene scene = new Scene(root);
         primaryStage.setTitle("Hello application");
